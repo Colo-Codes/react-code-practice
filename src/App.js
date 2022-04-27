@@ -5,9 +5,9 @@ const initialState = { counter: 0 };
 
 const reducer = (reducerState, action) => {
     switch (action.type) {
-        case '+':
+        case 'INCREMENT':
             return { counter: reducerState.counter + 1 };
-        case '-':
+        case 'DECREMENT':
             return { counter: reducerState.counter - 1 };
         default:
             throw new Error();
@@ -23,10 +23,10 @@ function App() {
 
     const handleClick = e => {
         if (e.target.value === '-') {
-            dispatch({ type: '-' });
+            dispatch({ type: 'DECREMENT' });
         }
         if (e.target.value === '+') {
-            dispatch({ type: '+' });
+            dispatch({ type: 'INCREMENT' });
         }
     };
 
