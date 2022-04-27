@@ -1,21 +1,38 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useReducer } from 'react';
+
+const initialState = { counter: 0 };
+
+const reducer = (reducerState, action) => {
+    switch (action.type) {
+        case '+':
+            return { counter: reducerState.counter + 1 };
+        case '-':
+            return { counter: reducerState.counter - 1 };
+        default:
+            throw new Error();
+    }
+};
 
 function App() {
-    const [state, setState] = useState({ counter: 0 });
+    // Using useState:
+    // const [state, setState] = useState({ counter: 0 });
+
+    // Using useReducer:
+    const [reducerState, dispatch] = useReducer(reducer, initialState);
 
     const handleClick = e => {
         if (e.target.value === '-') {
-            setState(prevState => ({ counter: prevState.counter - 1 }));
+            dispatch({ type: '-' });
         }
         if (e.target.value === '+') {
-            setState(prevState => ({ counter: prevState.counter + 1 }));
+            dispatch({ type: '+' });
         }
     };
 
     return (
         <div className='mainContainer'>
-            <div>Count is: {state.counter}</div>
+            <div>Count is: {reducerState.counter}</div>
             <div className='buttonContainer'>
                 <button onClick={handleClick} value='-'>
                     -
