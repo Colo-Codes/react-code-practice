@@ -12,12 +12,38 @@ code {
         monospace;
 }
 
-a {
+button {
+    background-color: #4caf50;
     color: white;
-    text-decoration: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 2rem;
 }
 
-a:hover {
-    color: #b0f5ff;
-    text-decoration: underline;
+button:hover {
+    opacity: 0.8;
+}
+
+button:active {
+    background-color: #226224;
+    transition: 0.2s;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
+    margin-top: 10vh;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
 }

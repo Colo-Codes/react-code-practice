@@ -1,27 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+    const [state, setState] = useState({ counter: 0 });
+
+    const handleClick = e => {
+        if (e.target.value === '-') {
+            setState(prevState => ({ counter: prevState.counter - 1 }));
+        }
+        if (e.target.value === '+') {
+            setState(prevState => ({ counter: prevState.counter + 1 }));
+        }
+    };
+
     return (
-        <div className='App'>
-            <header className='App-header'>
-                <h1>
-                    Repository:{' '}
-                    <a href='https://github.com/Colo-Codes/react-code-practice'>
-                        react-code-practice
-                    </a>
-                </h1>
-                <img src={logo} className='App-logo' alt='logo' />
-                <p>
-                    This is the starting point of each of the React practice
-                    projects.
-                </p>
-                <p>
-                    In order to explore each project, you need to checkout the
-                    corresponding branch from this repository.
-                </p>
-                <em style={{ fontSize: '14px' }}>By Damian Demasi</em>
-            </header>
+        <div className='mainContainer'>
+            <div>Count is: {state.counter}</div>
+            <div className='buttonContainer'>
+                <button onClick={handleClick} value='-'>
+                    -
+                </button>
+                <button onClick={handleClick} value='+'>
+                    +
+                </button>
+            </div>
         </div>
     );
 }
