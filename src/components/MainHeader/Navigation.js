@@ -4,37 +4,36 @@ import classes from './Navigation.module.css';
 
 const Navigation = props => {
     // CONTEXT: 3.2: using the useContext hook to consume (subscribes to) the context
-    // const ctx = useContext(AuthContext);
+    const contextValue = useContext(AppContext);
 
     // CONTEXT: 3.1: using Context.Consumer to consume (subscribes to) the context
     return (
-        <AppContext.Consumer>
-            {contextValue => {
-                return (
-                    <nav className={classes.nav}>
-                        <ul>
-                            {contextValue.isLoggedIn && (
-                                <li>
-                                    <a href='/'>Users</a>
-                                </li>
-                            )}
-                            {contextValue.isLoggedIn && (
-                                <li>
-                                    <a href='/'>Admin</a>
-                                </li>
-                            )}
-                            {contextValue.isLoggedIn && (
-                                <li>
-                                    <button onClick={props.onLogout}>
-                                        Logout
-                                    </button>
-                                </li>
-                            )}
-                        </ul>
-                    </nav>
-                );
-            }}
-        </AppContext.Consumer>
+        // <AppContext.Consumer>
+        // {contextValue => {
+        // return (
+        <nav className={classes.nav}>
+            <ul>
+                {contextValue.isLoggedIn && (
+                    <li>
+                        <a href='/'>Users</a>
+                    </li>
+                )}
+                {contextValue.isLoggedIn && (
+                    <li>
+                        <a href='/'>Admin</a>
+                    </li>
+                )}
+                {contextValue.isLoggedIn && (
+                    <li>
+                        {/* <button onClick={props.onLogout}>Logout</button> */}
+                        <button onClick={contextValue.onLogout}>Logout</button>
+                    </li>
+                )}
+            </ul>
+        </nav>
+        // );
+        // }}
+        // </AppContext.Consumer>
     );
 };
 

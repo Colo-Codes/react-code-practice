@@ -33,12 +33,17 @@ function App() {
     return (
         <AppContext.Provider
             value={{
-                // The isLoggedIn Context state will get updated when localIsLoggedIn updates, 
+                // The isLoggedIn Context state will get updated when localIsLoggedIn updates,
                 // and its value will be passed to the consumers of this Context.
                 isLoggedIn: localIsLoggedIn,
+                onLogout: logoutHandler, // CONTEXT 4.: Dynamic Context
             }}>
-            <MainHeader onLogout={logoutHandler} />
+            {/* <MainHeader onLogout={logoutHandler} /> */}
+            <MainHeader />
             <main>
+                {/* We don't use Context to pass the onLogout function here
+                because we are using that function directly in the
+                component (it's not a passing through, or forwarding, props): */}
                 {!localIsLoggedIn && <Login onLogin={loginHandler} />}
                 {localIsLoggedIn && <Home onLogout={logoutHandler} />}
             </main>
