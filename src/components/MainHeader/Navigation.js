@@ -1,40 +1,32 @@
 import React, { useContext } from 'react';
-import AppContext from '../../store/app-context';
+
+import AuthContext from '../../store/auth-context';
 import classes from './Navigation.module.css';
 
-const Navigation = props => {
-    // CONTEXT: 3.2: using the useContext hook to consume (subscribes to) the context
-    const contextValue = useContext(AppContext);
+const Navigation = () => {
+  const ctx = useContext(AuthContext);
 
-    // CONTEXT: 3.1: using Context.Consumer to consume (subscribes to) the context
-    return (
-        // <AppContext.Consumer>
-        // {contextValue => {
-        // return (
-        <nav className={classes.nav}>
-            <ul>
-                {contextValue.isLoggedIn && (
-                    <li>
-                        <a href='/'>Users</a>
-                    </li>
-                )}
-                {contextValue.isLoggedIn && (
-                    <li>
-                        <a href='/'>Admin</a>
-                    </li>
-                )}
-                {contextValue.isLoggedIn && (
-                    <li>
-                        {/* <button onClick={props.onLogout}>Logout</button> */}
-                        <button onClick={contextValue.onLogout}>Logout</button>
-                    </li>
-                )}
-            </ul>
-        </nav>
-        // );
-        // }}
-        // </AppContext.Consumer>
-    );
+  return (
+    <nav className={classes.nav}>
+      <ul>
+        {ctx.isLoggedIn && (
+          <li>
+            <a href="/">Users</a>
+          </li>
+        )}
+        {ctx.isLoggedIn && (
+          <li>
+            <a href="/">Admin</a>
+          </li>
+        )}
+        {ctx.isLoggedIn && (
+          <li>
+            <button onClick={ctx.onLogout}>Logout</button>
+          </li>
+        )}
+      </ul>
+    </nav>
+  );
 };
 
 export default Navigation;
